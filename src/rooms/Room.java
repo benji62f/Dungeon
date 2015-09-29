@@ -30,10 +30,17 @@ public class Room {
 		this.isTheEndOfLevel = isTheEndOfLevel;
 	}
 	
+	/**
+	 * Does the action associated at this room's instance
+	 * @param dungeon Dungeon container
+	 */
 	public void doAnAction(Dungeon dungeon){
 		describe();
 	}
 	
+	/**
+	 * Prints the different exits in the room, and the present items in the room
+	 */
 	public void describe(){
 		System.out.println("You are actually in the room : "+name);
 		System.out.println("You can borrow...");
@@ -48,6 +55,11 @@ public class Room {
 		}
 	}
 	
+	/**
+	 * Checks if the string given in parameter contains only a number
+	 * @param string String to be analyzed
+	 * @return True if it's the case, false otherwise
+	 */
 	public boolean isANumber(String string){
 		if(string.isEmpty())
 			return false;
@@ -58,26 +70,55 @@ public class Room {
 		return true;
 	}
 	
+	/**
+	 * Adds the room given in parameter to neighbors of this room instance
+	 * @param name Name of the exit towards the neighbor
+	 * @param neighbour Neighbor's room instance
+	 */
 	public void addNeighbour(String name, Room neighbour){
 		neighbours.put(name, neighbour);
 	}
 	
+	/**
+	 * Checks if the room given in parameter is a neighbor of this instance
+	 * @param room Name of the neighbor
+	 * @return True if this instance contains the neighbor, false otherwise
+	 */
 	public boolean containsRoom(String room){
 		return neighbours.containsKey(room);
 	}
 	
+	/**
+	 * Returns the neighbor which has as name the key given in parameter
+	 * @param key Name
+	 * @return The room instance of the neighbor
+	 */
 	public Room getRoom(String key){
 		return neighbours.get(key);
 	}
 	
+	/**
+	 * Adds the item given in parameter in the room
+	 * @param item Item to be added
+	 */
 	public void addAnItem(Item item){
 		items.add(item);
 	}
 	
+	/**
+	 * Removes the item given in parameter of the room
+	 * @param item Item to be removed
+	 * @return True if the item is removed, false otherwise
+	 */
 	public boolean removeAnItem(Item item){
 		return items.remove(item);
 	}
 	
+	/**
+	 * Returns the item which has as name the string given in parameter
+	 * @param name Name
+	 * @return The item instance if it's found, null otherwise
+	 */
 	public Item getItem(String name){
 		for(int i=0 ; i<items.size() ; i++){
 			if(items.get(i).getName().equals(name))
@@ -86,6 +127,11 @@ public class Room {
 		return null;
 	}
 	
+	/**
+	 * Unlocks the room with the key given in parameter if it's possible
+	 * @param key Key to unlock the room
+	 * @return True if the room is unlocked with the key, false otherwise
+	 */
 	public boolean unLockAnExitWithAKey(Key key){
 		if(neighbours.containsValue(key.getRoomToUnlock())){
 			key.getRoomToUnlock().setLock(false);
@@ -100,6 +146,10 @@ public class Room {
 		this.locked = locked;
 	}
 	
+	/**
+	 * Checks if the room is locked
+	 * @return True if it's the case, false otherwise
+	 */
 	public boolean isLocked(){
 		return locked;
 	}
@@ -112,6 +162,10 @@ public class Room {
 		return this.name;
 	}
 	
+	/**
+	 * Checks if the room is the end of the game's level
+	 * @return True if it's the case, false otherwise
+	 */
 	public boolean isTheEndOfLevel(){
 		return this.isTheEndOfLevel;
 	}

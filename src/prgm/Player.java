@@ -6,6 +6,10 @@ public class Player {
 	private int damages = 10;
 	private Bag bag = new Bag();
 	
+	/**
+	 * Applies the damages on the monster given in parameter
+	 * @param monster Monster to be hit
+	 */
 	public void hit(Monster monster){
 		monster.setHealth(monster.getHealth() - damages);
 	}
@@ -14,6 +18,10 @@ public class Player {
 		this.health = health;
 	}
 	
+	/**
+	 * Checks if the player is dead
+	 * @return True if he's dead, false otherwise
+	 */
 	public boolean isDead(){
 		return health <= 0;
 	}

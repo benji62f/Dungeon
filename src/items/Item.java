@@ -13,8 +13,17 @@ public abstract class Item {
 		this.name = name;
 	}
 	
+	/**
+	 * Executes the action of the item if it's possible, in the room given in parameter
+	 * @param room Room where the action is executed
+	 * @return True if the action is executed, false otherwise
+	 */
 	public abstract boolean useItInTheRoom(Room room);
 
+	/**
+	 * Checks if the item can be used unlimited
+	 * @return True if it's the case, false otherwise
+	 */
 	public boolean hasAnUnlimitedLife(){
 		return lifeRemaining == -1;
 	}

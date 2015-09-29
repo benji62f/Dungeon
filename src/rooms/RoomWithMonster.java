@@ -24,6 +24,10 @@ public class RoomWithMonster extends Room {
 			describe();
 	}
 
+	/**
+	 * Launches a battle between a monster and a player in the dungeon given in parameter
+	 * @param dungeon Dungeon
+	 */
 	public void launchABattle(Dungeon dungeon){
 		System.out.println("There is a monster, kill it to continue !");
 		Player p = dungeon.getPlayer();
@@ -42,6 +46,12 @@ public class RoomWithMonster extends Room {
 		}
 	}
 
+	/**
+	 * Updates the game according to the user's choice (attack, dodge, use a weapon)
+	 * @param p Player
+	 * @param choice Player's choice
+	 * @throws IndexOutOfBoundsException If no action is linked with the choice number
+	 */
 	private void update(Player p, int choice) throws IndexOutOfBoundsException{
 		switch (choice) {
 		case 1: //attack
@@ -75,6 +85,11 @@ public class RoomWithMonster extends Room {
 		}
 	}
 
+	/**
+	 * Asks the user's choice
+	 * @param nbChoices Number of possible choices
+	 * @return The user's choice
+	 */
 	private int askUserComands(int nbChoices){
 		int choice = -1;
 		while(choice < 1 || choice > nbChoices){
@@ -90,6 +105,10 @@ public class RoomWithMonster extends Room {
 		return choice;
 	}
 	
+	/**
+	 * Prints the fight's info
+	 * @param p Player
+	 */
 	private void displayFightInfo(Player p) {
 		System.out.println("Monster's health : " + monster.getHealth() + "%");
 		System.out.println("Your health : " + p.getHealth() + "%");

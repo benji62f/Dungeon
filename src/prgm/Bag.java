@@ -10,6 +10,11 @@ public class Bag {
 	private List<Item> listItems = new ArrayList<Item>();
 	private int maxSize = 5;
 	
+	/**
+	 * Checks if the item given in parameter can be added in the bag, and adds it if it's possible
+	 * @param item Item to add in the bag
+	 * @return True if the item is added, false otherwise
+	 */
 	public boolean addItem(Item item){
 		if(listItems.size() < maxSize){
 			listItems.add(item);
@@ -19,10 +24,20 @@ public class Bag {
 		return false;
 	}
 	
+	/**
+	 * Remove the item given in parameter of the bag
+	 * @param item Item to be removed
+	 * @return True if the item is removed with success, false otherwise
+	 */
 	public boolean removeItem(Item item){
 		return listItems.remove(item);
 	}
 	
+	/**
+	 * Checks if the bag contains the item given in parameter
+	 * @param item Item
+	 * @return True if the item is found, false otherwise
+	 */
 	public boolean contains(String item){
 		for(int i=0 ; i<listItems.size() ; i++){
 			if(listItems.get(i).getName().equals(item))
@@ -31,6 +46,11 @@ public class Bag {
 		return false;
 	}
 
+	/**
+	 * Searches and returns the item with the name given in parameter
+	 * @param item Item to be searched
+	 * @return The item object if the item is found, null otherwise
+	 */
 	public Item getItemByName(String item){
 		for(int i=0 ; i<listItems.size() ; i++){
 			if(listItems.get(i).getName().equals(item))
@@ -40,6 +60,9 @@ public class Bag {
 		return null;
 	}
 	
+	/**
+	 * Prints the bag's content
+	 */
 	public void listContents(){
 		System.out.println("Your bag contains :");
 		Item current;
@@ -52,6 +75,10 @@ public class Bag {
 		}
 	}
 	
+	/**
+	 * Creates and returns the list of weapons contained in the bag
+	 * @return The list of the weapons if there is any, null otherwise
+	 */
 	public List<Weapon> getListofWeapons(){
 		List<Weapon> weapons = new ArrayList<>();
 		for(int i=0 ; i<listItems.size() ; i++){
@@ -64,6 +91,9 @@ public class Bag {
 		return weapons;
 	}
 	
+	/**
+	 * Prints the list of weapons
+	 */
 	public void listWeapons(){
 		List<Weapon> weapons = getListofWeapons();
 		if(weapons != null){
@@ -72,6 +102,10 @@ public class Bag {
 		}
 	}
 	
+	/**
+	 * Checks if the bag is empty
+	 * @return True if the bag is empty, false otherwise
+	 */
 	public boolean isEmpty(){
 		return listItems.isEmpty();
 	}

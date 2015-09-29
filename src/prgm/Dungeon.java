@@ -12,7 +12,9 @@ public class Dungeon {
 	private Player player = new Player();
 	private int level = 1;
 
-
+	/**
+	 * Launches the game
+	 */
 	public void playGame(){
 		System.out.println("Hello ! If you have a question, tell me by saying 'help' !");
 		init();
@@ -20,6 +22,9 @@ public class Dungeon {
 			askCommand();
 	}
 	
+	/**
+	 * Initializes the game (rooms, keys, weapons, level...)
+	 */
 	public void init(){
 		switch (level) {
 		case 1:
@@ -92,6 +97,9 @@ public class Dungeon {
 		System.out.println("-- Level number " + level + " --");
 	}
 
+	/**
+	 * Asks at the user what does he want to do in the dungeon
+	 */
 	public void askCommand(){
 		System.out.print("You:");
 		@SuppressWarnings("resource")
@@ -99,6 +107,10 @@ public class Dungeon {
 		interpretCommand(sc.nextLine());
 	}
 
+	/**
+	 * Interprets the user's choices (and checks whether they are valid)
+	 * @param cmd User command
+	 */
 	public void interpretCommand(String cmd){
 		String[] tab = cmd.toLowerCase().split(" ");
 		switch (tab[0]) {
@@ -150,10 +162,18 @@ public class Dungeon {
 		}
 	}
 
+	/**
+	 * Prints the different commands that the user can enter
+	 */
 	public void printHelp(){
 		System.out.println("You can tell me :\n- describe\n- move\n- bag\n- take\n- use\n- end\n- help");
 	}
 
+	/**
+	 * Checks if the user can move in the room given in parameter, and manages the user's movements
+	 * @param room Target
+	 * @return True if the movement is done, false otherwise
+	 */
 	public boolean moveTo(String room){
 		if(currentRoom.containsRoom(room)){
 			if(currentRoom.getRoom(room).isLocked()){
@@ -168,6 +188,11 @@ public class Dungeon {
 		return false;
 	}
 
+	/**
+	 * Checks if the user can take the item given in parameter, and manages the taking
+	 * @param name Item
+	 * @return True if the taking is done, false otherwise
+	 */
 	public boolean take(String name) {
 		Item toBeTaken = currentRoom.getItem(name);
 		if(toBeTaken != null){
@@ -180,6 +205,11 @@ public class Dungeon {
 		return false;
 	}
 
+	/**
+	 * Checks if the user can use the item given in parameter, and manages the using
+	 * @param item Item
+	 * @return True if the using is done, false otherwise
+	 */
 	public boolean use(String item){
 		Item toBeUsed = player.getBag().getItemByName(item);
 		if(toBeUsed != null){
@@ -201,12 +231,18 @@ public class Dungeon {
 		return false;
 	}
 	
+	/**
+	 * Update the game's level
+	 */
 	public void upLevel(){
 		level++;
 		reset();
 		init();
 	}
 
+	/**
+	 * Restart the level
+	 */
 	public void restartLevel() {
 		reset();
 		init();
@@ -216,6 +252,9 @@ public class Dungeon {
 		currentRoom = null;
 	}
 
+	/**
+	 * Quit the game and exit the program
+	 */
 	public void quitTheGame(){
 		System.out.println("See you soon !");
 		System.exit(0);
@@ -235,10 +274,5 @@ public class Dungeon {
 	
 	public int getLevel(){
 		return level;
-	}
-
-	public static void main(String[] args) {
-		Dungeon dungeon = new Dungeon();
-		dungeon.playGame();
 	}
 }

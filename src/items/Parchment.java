@@ -12,7 +12,8 @@ public class Parchment extends Item {
 	
 	@Override
 	public boolean useItInTheRoom(Room room) {
-		return false;
+		System.out.println("The parchment's message is...\n" + message);
+		return true;
 	}
 	
 	public String getMessage(){
